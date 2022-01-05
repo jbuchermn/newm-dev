@@ -5,6 +5,10 @@ cd env
 ln -s ../newm/newm newm
 ln -s ../pywm/pywm pywm
 
+pushd ../pywm
+meson build && ninja -C build
+popd
+
 pushd pywm
 rm ./_pywm.so
 ln -s ../build/_pywm.*.so ./_pywm.so
