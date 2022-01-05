@@ -66,7 +66,6 @@
         shellHook = ''
           bash setup_env.sh
           cd env
-          python3 ./start-newm.py -d
         '';
       };
     }
