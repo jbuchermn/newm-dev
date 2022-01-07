@@ -18,6 +18,6 @@ cp ../newm/bin/.start-newm ./start-newm.py
 
 cat <<EOF > start.sh
 #!/usr/bin/env bash
-./start-newm.py -d > ~/.cache/newm_log 2>&1
+./start-newm.py -d > ./newm_log 2>&1
 EOF
 chmod +x start.sh
