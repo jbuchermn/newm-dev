@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
-rm -rf env
-mkdir env
+if [ ! -d "./env" ]; then
+    mkdir env
+    cd env
+    ln -s ../newm/newm newm
+    ln -s ../pywm/pywm pywm
+    cd ..
+fi
 cd env
-ln -s ../newm/newm newm
-ln -s ../pywm/pywm pywm
 
 pushd ../pywm
 meson build && ninja -C build
@@ -18,6 +21,10 @@ cp ../newm/bin/.start-newm ./start-newm.py
 
 cat <<EOF > start.sh
 #!/usr/bin/env bash
-./start-newm.py -d > ./newm_log 2>&1
+if [ ! -f "./config.py" ]; then
+  cp ~/.config/newm/config.py ./
+  chmod +w config.py
+fi
+./start-newm.py --debug --config-file ./config.py > ./newm_log 2>&1
 EOF
 chmod +x start.sh
