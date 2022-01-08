@@ -25,6 +25,11 @@ if [ ! -f "./config.py" ]; then
   cp ~/.config/newm/config.py ./
   chmod +w config.py
 fi
+
+pushd ../pywm
+meson build && ninja -C build
+popd
+
 ./start-newm.py --debug --config-file ./config.py > ./newm_log 2>&1
 EOF
 chmod +x start.sh

@@ -27,6 +27,9 @@
           pycairo
           evdev
           matplotlib
+
+          # dev
+          mypy
         ]);
       in
       with pkgs;
@@ -65,6 +68,7 @@
 
         shellHook = ''
           bash setup_env.sh
+          source newm/dev/env.sh
           cd env
         '';
       };
