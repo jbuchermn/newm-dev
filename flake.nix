@@ -2,12 +2,16 @@
   description = "newm and pywm - dev shell";
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.dasbus.url = "path:/home/jonas/newm-dev/newm/dist/nixos/dasbus";
+  inputs.dasbus.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.dasbus.inputs.flake-utils.follows = "flake-utils";
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, dasbus }:
   flake-utils.lib.eachDefaultSystem (
     system:
     let
       pkgs = nixpkgs.legacyPackages.${system}; 
+      dasbuspkg = dasbus.packages.${system};
     in
     {
       devShell = let
@@ -20,6 +24,7 @@
           python-pam
           pyfiglet
           fuzzywuzzy
+          dasbuspkg.dasbus
 
           # pywm
           imageio
@@ -40,6 +45,7 @@
           pkg-config
           wayland-scanner
           glslang
+          python3
         ];
 
         buildInputs = [
@@ -68,7 +74,6 @@
 
         shellHook = ''
           bash setup_env.sh
-          source newm/dev/env.sh
           cd env
         '';
       };
