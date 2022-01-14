@@ -10,12 +10,12 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-PohYA+c2AeN2OgM26RbB1k1F1F3O50KbwLakoF8zVfQ=",
-        "path": "/home/jonas/newm-dev/newm/dist/nixos/dasbus",
+        "narHash": "sha256-3skzVA437k2MRHocrfEvHeyxKntJ/a4FZ4fhGkCWwkg=",
+        "path": "./dasbus",
         "type": "path"
       },
       "original": {
-        "path": "/home/jonas/newm-dev/newm/dist/nixos/dasbus",
+        "path": "./dasbus",
         "type": "path"
       }
     },

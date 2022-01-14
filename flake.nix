@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
-    dasbus.url = "path:/home/jonas/newm-dev/newm/dist/nixos/dasbus";
+    dasbus.url = "path:./dasbus";
     dasbus.inputs.nixpkgs.follows = "nixpkgs";
     dasbus.inputs.flake-utils.follows = "flake-utils";
   };
