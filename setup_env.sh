@@ -5,6 +5,7 @@ if [ ! -d "./env" ]; then
     ln -s ../newm/newm newm
     ln -s ../newm/newm_panel_basic newm_panel_basic
     ln -s ../pywm/pywm pywm
+    touch setup.py  # for nvim to recognize env as project root
     cd ..
 fi
 cd env
