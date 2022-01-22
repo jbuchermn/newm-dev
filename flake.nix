@@ -90,6 +90,8 @@
         shellHook = ''
           bash setup_env.sh
           cd env
+
+          export SHELL="$(readlink $(which zsh))"
         '';
       };
     }
