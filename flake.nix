@@ -49,7 +49,10 @@
           matplotlib
 
           # dev
+          python-lsp-server
+          pylsp-mypy
           mypy
+          yappi
         ]);
       in
       with pkgs;
