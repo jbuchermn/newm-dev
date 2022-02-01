@@ -58,7 +58,7 @@
       with pkgs;
       mkShell {
         nativeBuildInputs = [
-          meson_0_60
+          meson
           ninja
           pkg-config
           wayland-scanner
@@ -88,6 +88,10 @@
           libcap
 
           python-with-my-packages
+
+          # dev
+          gdb
+          valgrind
         ];
 
         shellHook = ''
