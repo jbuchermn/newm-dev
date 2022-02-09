@@ -10,22 +10,31 @@
   flake-utils.lib.eachDefaultSystem (
     system:
     let
-      pkgs = nixpkgs.legacyPackages.${system}; 
-      dasbuspkg = {
-        dasbus = pkgs.python3.pkgs.buildPythonPackage rec {
-          pname = "dasbus";
-          version = "1.6";
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          (self: super: rec {
+            python3 = super.python3.override {
+              packageOverrides = self1: super1: {
+                # matplotlib = super1.matplotlib.override { enableQt = true; };
+                dasbus = super1.buildPythonPackage rec {
+                  pname = "dasbus";
+                  version = "1.6";
 
-          src = pkgs.python3.pkgs.fetchPypi {
-            inherit pname version;
-            sha256 = "sha256-FJrY/Iw9KYMhq1AVm1R6soNImaieR+IcbULyyS5W6U0=";
-          };
+                  src = super1.fetchPypi {
+                    inherit pname version;
+                    sha256 = "sha256-FJrY/Iw9KYMhq1AVm1R6soNImaieR+IcbULyyS5W6U0=";
+                  };
 
-          setuptoolsCheckPhase = "true";
+                  setuptoolsCheckPhase = "true";
 
-          propagatedBuildInputs = with pkgs.python3Packages; [ pygobject3 ];
-        };
-
+                  propagatedBuildInputs = with super1; [ pygobject3 ];
+                };
+              };
+            };
+            python3Packages = python3.pkgs;
+          })
+        ];
       };
     in
     {
@@ -39,7 +48,7 @@
           python-pam
           pyfiglet
           fuzzywuzzy
-          dasbuspkg.dasbus
+          dasbus
 
           # pywm
           imageio

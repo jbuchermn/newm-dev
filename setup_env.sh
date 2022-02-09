@@ -38,7 +38,7 @@ pushd ../pywm
 meson build && ninja -C build
 popd
 
-./start-newm.py --debug --profile --config-file ./config.py > ./newm_log 2>&1
+./start-newm.py --debug --config-file ./config.py > ./newm_log 2>&1
 EOF
 chmod +x start.sh
 
