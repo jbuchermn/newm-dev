@@ -16,7 +16,7 @@
           (self: super: rec {
             python3 = super.python3.override {
               packageOverrides = self1: super1: {
-                # matplotlib = super1.matplotlib.override { enableQt = true; };
+                matplotlib = super1.matplotlib.override { enableQt = true; };
                 dasbus = super1.buildPythonPackage rec {
                   pname = "dasbus";
                   version = "1.6";
@@ -101,10 +101,14 @@
           # dev
           gdb
           valgrind
+          qt5.qtwayland # For matplotlib
         ];
 
+        # For matplotlib: https://github.com/NixOS/nixpkgs/issues/80147#issuecomment-784857897
+        QT_PLUGIN_PATH = with pkgs.qt5; "${qtbase}/${qtbase.qtPluginPrefix}:${qtwayland}";
+
         shellHook = ''
-          bash setup_env.sh
+          # bash setup_env.sh
           cd env
 
           export SHELL="$(readlink $(which zsh))"
