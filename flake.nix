@@ -108,8 +108,7 @@
         QT_PLUGIN_PATH = with pkgs.qt5; "${qtbase}/${qtbase.qtPluginPrefix}:${qtwayland}";
 
         shellHook = ''
-          # bash setup_env.sh
-          cd env
+          cd env || (bash setup_env.sh && cd env)
 
           export SHELL="$(readlink $(which zsh))"
         '';
