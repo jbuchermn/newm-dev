@@ -1,0 +1,4 @@
+#!/usr/bin/env python3
+from pywm_fullscreen import run
+run()
+
